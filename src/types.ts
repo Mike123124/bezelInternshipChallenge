@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export type Watch = {
   id: number;
   listing: {

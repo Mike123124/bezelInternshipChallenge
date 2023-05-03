@@ -1,10 +1,11 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable array-callback-return */
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import Button from 'components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Watch } from 'src/types';
 import axios from 'axios';
 
 interface ModalProps {
@@ -16,21 +17,27 @@ function Modal({ data }: ModalProps) {
   }
 
   function acceptOrder() {
-    axios.post('https://eb863a74-7a4e-4daf-9540-d2db8470c18e.mock.pstmn.io/marketplace/orders/123/accept')
-      .then(response => {
+    axios
+      .post(
+        'https://eb863a74-7a4e-4daf-9540-d2db8470c18e.mock.pstmn.io/marketplace/orders/123/accept'
+      )
+      .then((response) => {
         console.log('Order accepted:', response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Failed to accept order:', error);
       });
   }
-  
+
   function declineOrder() {
-    axios.post('https://eb863a74-7a4e-4daf-9540-d2db8470c18e.mock.pstmn.io/marketplace/orders/123/decline')
-      .then(response => {
+    axios
+      .post(
+        'https://eb863a74-7a4e-4daf-9540-d2db8470c18e.mock.pstmn.io/marketplace/orders/123/decline'
+      )
+      .then((response) => {
         console.log('Order declined:', response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Failed to decline order:', error);
       });
   }
@@ -69,10 +76,18 @@ function Modal({ data }: ModalProps) {
             will be automatically rejected.
           </p>
           <div className="flex flex-col gap-4 py-4">
-            <Button onClick={() => {acceptOrder()}}>Accept Sale</Button>
+            <Button
+              onClick={() => {
+                acceptOrder();
+              }}
+            >
+              Accept Sale
+            </Button>
             <button
               type="button"
-              onClick={() => {declineOrder()}}
+              onClick={() => {
+                declineOrder();
+              }}
               className="text-sm font-semibold text-[#030303]"
             >
               Reject Sale
@@ -83,24 +98,24 @@ function Modal({ data }: ModalProps) {
           <div className="h-0.5 w-full bg-[#e3e1de]" />
           {data && (
             <div className="flex flex-col gap-1">
-              <div className="flex flex-row gap-1 p-4 justify-between">
-                <div className="flex flex-col text-left text-sm gap-1">
-                  <p className=" text-xs whitespace-nowrap font-semibold text-[#305850]">
-                    {data.listing?.model?.brand?.displayName + ' ' + data.listing?.model?.displayName}
-                
+              <div className="flex flex-row justify-between gap-1 p-4">
+                <div className="flex flex-col gap-1 text-left text-sm">
+                  <p className=" whitespace-nowrap text-xs font-semibold text-[#305850]">
+                    {`${data.listing?.model?.brand?.displayName} ${data.listing?.model?.displayName}`}
                   </p>
-                  <p className='whitespace-nowrap font-semibold text-xs text-[#305850]'>Gerald Genta {data.listing?.model?.referenceNumber}</p>
-                  <span className='text-xs text-[#73857f]'>
-                  {' '}
-                  {data.listing?.condition} / {data.listing?.manufactureYear}
-                </span>
-
+                  <p className="whitespace-nowrap text-xs font-semibold text-[#305850]">
+                    Gerald Genta {data.listing?.model?.referenceNumber}
+                  </p>
+                  <span className="text-xs text-[#73857f]">
+                    {' '}
+                    {data.listing?.condition} / {data.listing?.manufactureYear}
+                  </span>
                 </div>
 
-               
                 <img
                   className="h-16 w-16 rounded-lg"
                   src={data?.listing?.images[0]?.image?.url}
+                  alt="watch image"
                 />
               </div>
               <div className="h-0.5 w-full bg-[#e3e1de]" />
@@ -138,7 +153,6 @@ function Modal({ data }: ModalProps) {
               <div className="flex items-start justify-between p-4 text-xs font-semibold text-[#121615] ">
                 Earnings <span>${formatNumber(data.payoutAmountCents)}</span>
               </div>
-       
             </div>
           )}
         </div>

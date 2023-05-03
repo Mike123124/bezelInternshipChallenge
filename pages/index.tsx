@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import axios from 'axios';
 import Modal from 'components/Modal/WatchModal';
 import PlainLayout from 'layouts/PlainLayout';
 import { useEffect, useState } from 'react';
-import { Watch } from 'src/types';
 
 function Home() {
   const [data, setData] = useState([]);
