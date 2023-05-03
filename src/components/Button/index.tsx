@@ -1,14 +1,17 @@
+/* eslint-disable prettier/prettier */
 import React, { ReactNode } from 'react';
 
 interface ButtonProps {
   children: ReactNode;
+  onClick: () => void;
 }
 
-function Button({ children }: ButtonProps) {
+function Button({ children, onClick }: ButtonProps) {
   return (
     <button
       type="button"
-      className="rounded-md bg-blue-600 px-5 py-3 font-mono text-lg text-white hover:bg-blue-700"
+      onClick={onClick}
+      className="rounded-[20px] bg-[#1a3a32] px-28 py-4 font-sans text-sm font-semibold text-[#e1e3df]"
     >
       {children}
     </button>
